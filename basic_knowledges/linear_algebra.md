@@ -19,7 +19,9 @@ $\mathcal{N}(\textbf{A})\perp\mathcal{R}(\textbf{A}^T)$ and $\mathcal{N}(\textbf
 
 ## Conditioning
 Recall that the definition of conditioning:
-$$\frac{\text{relative output error}}{relative input error}\le\kappa$$
+
+$$\frac{\text{relative output error}}{\text{relative input error}}\le\kappa$$
+
 For a linear system $\textbf{Ax}=\textbf{b}$, $\textbf{x}$ is the input while $\textbf{b}$ is the output. To judge whether the problem is well-conditioned, we need to define the vector norm $\|\textbf{v}\|$ and the matrix norm $\|\textbf{A}\|$.
 
 ### Useful Identities
@@ -83,3 +85,59 @@ $$\frac{\|\delta \mathbf{x}\|}{\|\mathbf{x}\|} \leq \underbrace{\left\|\mathbf{A
 
 Then, build the  relationship between input $\textbf{x}$ and the matrix (linear transformer) $\textbf{A}$:
 $$\frac{\|\delta \mathbf{x}\|}{\|\mathbf{x}\|} \leq \underbrace{\left\|\mathbf{A}^{-1}\right\|\|\mathbf{A}\|}_{\kappa(\mathbf{A})} \frac{\|\delta \mathbf{A}\|}{\|\mathbf{A}\|}$$
+
+We can add simultaneous perturbations for a more generalized result:
+
+Let
+
+$$
+\begin{aligned}
+\mathbf{A}(s) &= \mathbf{A} + s\delta\mathbf{A}, & \mathbf{A}'(s) &= \frac{\mathrm{d}\mathbf{A}(s)}{\mathrm{d}s}, \\
+\mathbf{x}(s) &= \mathbf{x} + s\delta\mathbf{x}, & \mathbf{x}'(s) &= \frac{\mathrm{d}\mathbf{x}(s)}{\mathrm{d}s}, \\
+\mathbf{b}(s) &= \mathbf{b} + s\delta\mathbf{b}, & \mathbf{b}'(s) &= \frac{\mathrm{d}\mathbf{b}(s)}{\mathrm{d}s}.
+\end{aligned}
+$$
+
+Where the derivatives of each terms are their corresponding perturbations. Now let's doing some algebra. Firstly, differentiate both sides
+
+$$
+\begin{aligned}
+\mathbf{A}'(s)\mathbf{x}(s) + \mathbf{A}(s)\mathbf{x}'(s) &= \mathbf{b}'(s), \\
+\mathbf{x}'(s) &= \mathbf{A}^{-1}(s)\mathbf{b}'(s) - \mathbf{A}^{-1}(s)\mathbf{A}'(s)\mathbf{x}(s).
+\end{aligned}
+$$
+
+Then, by applying the triangle inequality , we can have
+
+$$
+\begin{aligned}
+\|\mathbf{x}'(s)\| &= \|\mathbf{A}^{-1}(s)\mathbf{b}'(s) - \mathbf{A}^{-1}(s)\mathbf{A}'(s)\mathbf{x}(s)\| \\
+&\leq \|\mathbf{A}^{-1}(s)\mathbf{b}'(s)\| + \|\mathbf{A}^{-1}(s)\mathbf{A}'(s)\mathbf{x}(s)\| \\
+&\leq \|\mathbf{A}^{-1}(s)\| \|\mathbf{b}'(s)\| + \|\mathbf{A}^{-1}(s)\| \|\mathbf{A}'(s)\mathbf{x}(s)\|\\
+&\leq \|\mathbf{A}^{-1}(s)\| \|\mathbf{b}'(s)\| + \|\mathbf{A}^{-1}(s)\| \|\mathbf{A}'(s)\| \|\mathbf{x}(s)\|
+\end{aligned}
+$$
+
+By doing some operations on it, we will finally get
+
+$$
+\frac{\|\mathbf{x}'(0)\|}{\|\mathbf{x}(0)\|} \leq \kappa \left( \frac{\|\mathbf{b}'(0)\|}{\|\mathbf{b}(0)\|} + \frac{\|\mathbf{A}'(0)\|}{\|\mathbf{A}(0)\|} \right)
+$$
+
+$$
+\frac{\|\delta \mathbf{x}\|}{\|\mathbf{x}\|} \leq \kappa \left( \frac{\|\delta \mathbf{b}\|}{\|\mathbf{b}\|} + \frac{\|\delta \mathbf{A}\|}{\|\mathbf{A}\|} \right)
+$$
+
+Where $\kappa=\|\textbf{A}^{-1}\|\|\textbf{A}\|$. If $\kappa$ is small, we can say that this problem is well-conditioned.
+
+We can also define the concept of condition number of this problem by using $\kappa$.
+
+$$\text{cond}(\textbf{A})=\|\textbf{A}^{-1}\|\|\textbf{A}\|$$
+
+For all $\textbf{A}$, $\text{cond}(\textbf{A})\ge1$
+
+We always want to have a well-conditioned problem. However, we cannot guarante that every matrix is well-conditioned. Hence, we can apply a pre-conditioning matrix $\textbf{P}$ to our problem, where
+
+$$\textbf{PAx}=\textbf{Pb}$$
+
+This will be widely used in problem-solving. You will see this frequently in future studies of numerical methods, so I will not discuss it in depth here.
