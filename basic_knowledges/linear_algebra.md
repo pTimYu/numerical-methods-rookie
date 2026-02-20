@@ -31,17 +31,21 @@ Here, I will put some useful identities which will be helpful to mathematical pr
 
 ### Vector Norms
 Definition:
+
 $$\|\textbf{x}\|_p=\left(\sum_{i=1}^n|x_i|^p\right)^{\frac{1}{p}}$$
 
 Such norm is called "*p-norm of $\textbf{x}$*"
 
 * **1-norm (Manhattan norm):**
+  
     $$\|\mathbf{x}\|_1 = \sum_{i=1}^{n} |x_i|$$
 
 * **2-norm (Euclidean norm):**
+  
     $$\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^{n} |x_i|^2}$$
 
 * **$\infty$-norm (Maximum norm):**
+  
     $$\|\mathbf{x}\|_\infty = \max_{i} |x_i|$$
 
 Identities of the vector norm:
@@ -50,25 +54,33 @@ Identities of the vector norm:
 2. $\|\alpha\textbf{x}\|=|\alpha|\|\textbf{x}\|$ (*homogeneity*)
 3. $\|\textbf{x}+\textbf{y}\|\le\|\textbf{x}\|+\|\textbf{y}\|$ (*triangle inequality*)
 4. Inequality for some specific norm:
+   
 $$\|\mathbf{x}\|_1 \leq \sqrt{n}\|\mathbf{x}\|_2, \quad \|\mathbf{x}\|_2 \leq \sqrt{n}\|\mathbf{x}\|_\infty, \quad \|\mathbf{x}\|_1 \leq n\|\mathbf{x}\|_\infty$$
 
 ### Matrix Norms
 Definition:
+
 $$\|\mathbf{A}\|_p = \max_{\mathbf{x} \neq \mathbf{0}} \frac{\|\mathbf{A}\mathbf{x}\|_p}{\|\mathbf{x}\|_p},$$
 
 Such norm is called "*p-norm of $\textbf{A}$*"
 
 * **1-norm (column-sum norm):**
+  
     $$\|\mathbf{A}\|_1 = \max_{j} \left( \sum_{i=1}^{m} |a_{ij}| \right)$$
 
 * **2-norm (spectral norm):**
+  
     $$\|\mathbf{A}\|_2 = \sqrt{\bar{\lambda}(\mathbf{A}^\top \mathbf{A})}$$
     Where $\bar{\lambda}(\cdot)$ is the maximum eigenvalue
 
 * **$\infty$-norm (spectral norm):**
+  
     $$\|\mathbf{A}\|_\infty = \max_{i} \left( \sum_{j=1}^{n} |a_{ij}| \right)$$
+
 * **The Forbenius norm**
+  
     $$\|\textbf{A}\|_F=\sqrt{\text{tr}(\textbf{A}^T\textbf{A})}$$
+
     *Trace:* The sum of the elements on its main diagonal.
 
 Identities of the matrix norm:
@@ -84,6 +96,7 @@ We can build the relationship between input $\textbf{x}$ and output $\textbf{y}$
 $$\frac{\|\delta \mathbf{x}\|}{\|\mathbf{x}\|} \leq \underbrace{\left\|\mathbf{A}^{-1}\right\|\|\mathbf{A}\|}_{\kappa(A)} \frac{\|\delta \mathbf{b}\|}{\|\mathbf{b}\|}$$
 
 Then, build the  relationship between input $\textbf{x}$ and the matrix (linear transformer) $\textbf{A}$:
+
 $$\frac{\|\delta \mathbf{x}\|}{\|\mathbf{x}\|} \leq \underbrace{\left\|\mathbf{A}^{-1}\right\|\|\mathbf{A}\|}_{\kappa(\mathbf{A})} \frac{\|\delta \mathbf{A}\|}{\|\mathbf{A}\|}$$
 
 We can add simultaneous perturbations for a more generalized result:
