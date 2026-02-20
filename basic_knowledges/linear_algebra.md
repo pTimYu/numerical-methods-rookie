@@ -38,15 +38,15 @@ Such norm is called "*p-norm of $\textbf{x}$*"
 
 * **1-norm (Manhattan norm):**
   
-    $$\|\mathbf{x}\|_1 = \sum_{i=1}^{n} |x_i|$$
+$$\|\mathbf{x}\|_1 = \sum_{i=1}^{n} |x_i|$$
 
 * **2-norm (Euclidean norm):**
   
-    $$\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^{n} |x_i|^2}$$
+$$\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^{n} |x_i|^2}$$
 
 * **$\infty$-norm (Maximum norm):**
   
-    $$\|\mathbf{x}\|_\infty = \max_{i} |x_i|$$
+$$\|\mathbf{x}\|_\infty = \max_{i} |x_i|$$
 
 Identities of the vector norm:
 
@@ -64,24 +64,34 @@ $$\|\mathbf{A}\|_p = \max_{\mathbf{x} \neq \mathbf{0}} \frac{\|\mathbf{A}\mathbf
 
 Such norm is called "*p-norm of $\textbf{A}$*"
 
+
 * **1-norm (column-sum norm):**
   
-    $$\|\mathbf{A}\|_1 = \max_{j} \left( \sum_{i=1}^{m} |a_{ij}| \right)$$
+$$\|\mathbf{A}\|_1 = \max_{j} \left( \sum_{i=1}^{m} |a_{ij}| \right)$$
 
 * **2-norm (spectral norm):**
   
-    $$\|\mathbf{A}\|_2 = \sqrt{\bar{\lambda}(\mathbf{A}^\top \mathbf{A})}$$
-    Where $\bar{\lambda}(\cdot)$ is the maximum eigenvalue
+$$\|\mathbf{A}\|_2 = \sqrt{\bar{\lambda}(\mathbf{A}^\top \mathbf{A})}$$
+    
+<center>
+
+Where $\bar{\lambda}(\cdot)$ is the maximum eigenvalue
+
+</center>
 
 * **$\infty$-norm (spectral norm):**
   
-    $$\|\mathbf{A}\|_\infty = \max_{i} \left( \sum_{j=1}^{n} |a_{ij}| \right)$$
+$$\|\mathbf{A}\|_\infty = \max_{i} \left( \sum_{j=1}^{n} |a_{ij}| \right)$$
 
 * **The Forbenius norm**
   
-    $$\|\textbf{A}\|_F=\sqrt{\text{tr}(\textbf{A}^T\textbf{A})}$$
+$$\|\textbf{A}\|_F=\sqrt{\text{tr}(\textbf{A}^T\textbf{A})}$$
 
-    *Trace:* The sum of the elements on its main diagonal.
+<center>
+
+*Trace:* The sum of the elements on its main diagonal.
+
+</center>
 
 Identities of the matrix norm:
 
