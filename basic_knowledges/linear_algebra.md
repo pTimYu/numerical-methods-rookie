@@ -15,7 +15,7 @@ The null space/kernel of a matrix, $\mathcal{N}(\textbf{A})$, is the space of th
 
 **Relationship Between $\mathcal{R}(\textbf{A})$, $\mathcal{N}(\textbf{A})$, $\mathcal{R}(\textbf{A}^T)$, $\mathcal{N}(\textbf{A}^T)$ (Strang Diagram):**
 
-$\mathcal{N}(\textbf{A})\perp\mathcal{R}(\textbf{A}^T)$ and $\mathcal{N}(\textbf{A}^T)\perp\mathcal{R}(\textbf{A})$ (Also check [The Fundamental Theorem of Linear Algebra](https://www.dm.unibo.it/~regonati/ad0708/strang-FTLA.pdf) written by Prof. Gilbert Strang)
+$\mathcal{N}(\textbf{A})\perp\mathcal{R}(\textbf{A}^T)$ and $\mathcal{N}(\textbf{A}^T)\perp\mathcal{R}(\textbf{A})$ (Also check [The Fundamental Theorem of Linear Algebra](https://www.engineering.iastate.edu/~julied/classes/CE570/Notes/strangpaper.pdf) written by Prof. Gilbert Strang)
 
 ## Conditioning
 Recall that the definition of conditioning:
@@ -164,3 +164,62 @@ We always want to have a well-conditioned problem. However, we cannot guarante t
 $$\textbf{PAx}=\textbf{Pb}$$
 
 This will be widely used in problem-solving. You will see this frequently in future studies of numerical methods, so I will not discuss it in depth here.
+
+## Analytic Geometry with Linear Algebra
+
+### Introduction
+
+The essence of linear algebra can be revealed through geometry, and this is how analytic geometry works. By exploring the relationship between analytic geometry and linear algebra, we can gain deeper insights into how each works.
+
+Let's start with a circle, the simplest and fundamental geometry in a coordinate system. It can be defined by an equation:
+
+$$x^2+y^2=1$$
+
+This equation can be written in the matrix and vector form:
+
+$$
+\begin{bmatrix} x_1 & x_2 \end{bmatrix}
+\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+= 1
+$$
+
+Use some symbols to represent it and we can get:
+
+$$
+\textbf{x}^T\textbf{A}\textbf{x}=1
+$$
+
+Where $\textbf{A}$ here is the identity matrix, any vector that satisfies this relationship will lie on the circle with radius equal to 1. We can say that this matrix transforms the vector into the Euclidean space. Still, here we will find that such "transformation" will return the same input, since we have already been in the Euclidean space (and we are always using the Euclidean space to express location information, so that's how the identity matrix works).
+
+### Elipse and Symmetric and Positive Definite (SPD) matrix
+
+But what if $\textbf{A}$ is any other matrices rather than an identity matrix?
+
+Let's generalize the equation first. Consider $\textbf{A}$ as a symmetric and positive definite matrix. Recall the concepts of the eigenvalue and eigenvector, we have $\textbf{Av}=\lambda\textbf{v}$. Since the eigenvectors of an SPD matrix are all orthonormal, We can have
+
+$$
+\begin{align*}
+\textbf{x}&=a_1\textbf{v}_1+a_2\textbf{v}_2+\cdots+a_n\textbf{v}_n \\
+\textbf{Ax} &= a_1\lambda_1\textbf{v}_1+a_2\lambda_2\textbf{v}_2+\cdots+a_n\lambda_n\textbf{v}_n \\
+\textbf{x}^T\textbf{Ax} &= a_1^2\lambda_1+a_2^2\lambda_2+\cdots+a_n^2\lambda_n=1
+\end{align*}
+$$
+
+There are infinitely many solutions to $a_i$, where the solutions all fall on the ellipse/ellipsoid. We can start with some special case to simplify it. Let $a_i=\frac{1}{\sqrt{\lambda_i}}$, then $a_i^2\lambda_i=1$, and the sum of the rest terms becomes zero. Since they are all in the second order, and we know that all eigenvalues of an SPD matrix are larger than zero (see [Choleskey Factorization](../solving_linear_system/Cholesky_Factorization.ipynb)), the only solution for $a_j,\;j\neq i$ is zero. Hence, we have
+
+$$\textbf{x}_i^T\textbf{Ax}_j=\delta_{ij}$$
+
+where
+
+$$\textbf{x}_i=\frac{1}{\sqrt{\lambda_i}}\textbf{v}_1$$
+
+$\textbf{x}_i$ forms a set of [conjugate axes](https://en.wikipedia.org/wiki/Conjugate_diameters).
+
+Both $\textbf{Ax}$ ($\forall\|x\|=1$) and $\textbf{x}^T\textbf{Ax}=1$ will form an elipse, the direction of the basis vectors are the same, but the magnification levels are different.
+
+The definition of $\textbf{x}^T\textbf{Ay}$ is the inner product of $\textbf{x}$ and $\textbf{y}$ in $\textbf{A}$-coordinates (If you do $\textbf{x}^T\textbf{Iy}$, then it is the inner product in Euclidean space), which means that now the vector is not in the scope of Euclidean space (the one we most famailiar with). Then if we do $\textbf{x}^T\textbf{Ax}=1$, we can obtain the unit vector in $\textbf{A}$-coordinates.
+
+It will be a bit hard to understand, since it is not the coordinate system we normally use, and we are even using Euclidean space to evaluate them. In fact, it is a different scaling method based on eigenvalues and eigenvectors. Let's start with the eigenvalues first, since the eigenvectors of an SPD matrix are orthogonal. $\lambda>1$ means that the scale of these coordinates is larger than the regular one. For example, if we have a matrix with $\lambda_1=2$, and the corresponding eigenvector is $\begin{bmatrix}1&0\end{bmatrix}^T$. Then if we measure $\textbf{x}=\begin{bmatrix}1&0\end{bmatrix}^T$ in $\textbf{A}$-coordinates, we will have $\|\textbf{x}\|_\textbf{A}=\sqrt{\textbf{x}^T\textbf{Ax}}=\sqrt{2}$, but the length of $\textbf{x}$ in the Euclidean space is 1! That is why we will have a smaller Euclidean distance for the unit vector in $\textbf{A}$-coordinates in this case.
+
+The transformation from Euclidean space to matrix space is a key concept in linear algebra and in engineering problems. In the real world, not everything is flat; most engineering designs and problems incorporate curves because we can gain many benefits from them. Hence, knowing how to transform curved space into flat space (Euclidean space) is essential, as it simplifies many problem-solving difficulties, and we will face many issues that require these concepts. I created a [visual illustration](linear_algebra_visual_illustration.ipynb) to help explain this; feel free to check it out.
