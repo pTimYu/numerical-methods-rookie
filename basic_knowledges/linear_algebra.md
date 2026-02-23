@@ -165,6 +165,42 @@ $$\textbf{PAx}=\textbf{Pb}$$
 
 This will be widely used in problem-solving. You will see this frequently in future studies of numerical methods, so I will not discuss it in depth here.
 
+## Gram-Schmidt
+
+### Fourier Expansion and Inner Product
+
+Recall what we learned from the advanced calculus courses: we use the Fourier series to solve specific partial differential equations, since most of these equations (like the wave equation, Laplace equation, etc.) contain trigonometric functions. They are orthogonal to each other in the domain of the problem, and we can treat them just like the combination of basis vectors.
+
+Here, we need to claim a concept: the *inner product*. Briefly speaking, the inner product measures the scale of projections from one identity to another in a space. The inner product in Euclidean space is what we're familiar with: the dot product of the vectors. In the function space, for a continuous function $f(x)$ and $g(x)$ on $[a, b]$, the inner product is defined as:
+
+$$\int_a^bf(x)g(x)dx$$
+
+For the Fourier series, the basis of the space is made up of the trigonometric functions. For the Maclaurin series, the basis of the space are made up of the power function of $x$ ($1$, $x$, $x^2$, ...).
+
+But here, we will not use the function space to do something, so let's go back to the vector space.
+
+### Gram-Schmidt Orthogonalization
+
+The goal is simple: give some vectors, can you find their orthonormal basis? You can even derive it by yourself. The main idea is to decompose and normalize the basis in order. For the first vector, we only normalize it, and then we can get our first basis vector. For the second vector, we compute the inner product with the first basis vector, then obtain the scale of the component in the direction of the first basis vector. We subtract it, then normalize it, and we get our second basis vector! For the third vector, we repeat step two twice. And for the remaining vectors, we can do the same thing.
+
+The subtraction step ensures orthogonality, since we exclude all components of this vector relative to other unit vectors. This idea also aligned with the Fourier expansion, which shows some reductionism (the philosophy thing). The formula of Gram-Schmidt orthogonalization is shown below:
+
+$$
+\mathbf{u}_1 = \frac{\mathbf{x}_1}{\nu_1}, \quad \quad \quad \quad \quad \quad \nu_1 = \|\mathbf{x}_1\|_2
+$$
+
+$$
+\mathbf{u}_k = \frac{\mathbf{x}_k - \sum_{i=1}^{k-1} \langle \mathbf{u}_i, \mathbf{x}_k \rangle \mathbf{u}_i}{\nu_k}, \quad \quad \nu_k = \left\| \mathbf{x}_k - \sum_{i=1}^{k-1} \langle \mathbf{u}_i, \mathbf{x}_k \rangle \mathbf{u}_i \right\|_2 \quad \quad k > 1.
+$$
+
+Actually, this can be used not only in the Euclidean space but also in the function space (I discuss this concept in the Euclidean space since it will be easier to understand).
+
+In the form of Fourier expansion, it can be:
+
+$$
+\textbf{x}=\sum_{i=1}^n\langle \textbf{u}_i, \textbf{x} \rangle\textbf{u}_i
+$$
+
 ## Analytic Geometry with Linear Algebra
 
 ### Introduction
