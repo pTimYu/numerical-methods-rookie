@@ -165,6 +165,68 @@ $$\textbf{PAx}=\textbf{Pb}$$
 
 This will be widely used in problem-solving. You will see this frequently in future studies of numerical methods, so I will not discuss it in depth here.
 
+## Eigenvalue and Eigenvector
+
+### Basic Knowledge
+
+The eigenvalue and eigenvector problem is the concepts that will be mentioned in every linear algebra classes. And I saw this concept everywhere in my mechanical engineering courses, such as vibration and solid mechanics. The problem is to find a vector $\textbf{v}$ and a scalar $\lambda$ such that
+
+$$\textbf{Av}=\lambda\textbf{v}$$
+
+or, let's say
+
+$$(\textbf{A}-\lambda\textbf{I})\textbf{v}=\textbf{0}$$
+
+The common way to solve this problem is to solve $\text{det}(\textbf{A}-\lambda\textbf{I})=0$. However, we never do this in numerical methods, since it costs a lot. I will not talk too much about solving it by hand, since that is the easiest part here. What I will mention here is the essence of this concept: what does it really mean, and why is it so important?
+
+### Eigendecomposition
+
+Consider the general formula of the eigenvalue and eigenvector:
+
+$$\textbf{Av}=\lambda\textbf{v}$$
+
+If we replace the eigenvector by a matrix that contains all eigenvectors, it will become:
+
+$$\textbf{AV}=\textbf{V}\boldsymbol{\Lambda}$$
+
+And we can write it in the decomposition form:
+
+$$\textbf{A}=\textbf{V}\boldsymbol{\Lambda}\textbf{V}^{-1}$$
+
+This is valid for all situations.
+
+If our matrix is *symmetric*, we will have:
+
+$$\textbf{A}=\textbf{V}\boldsymbol{\Lambda}\textbf{V}^{T}$$
+
+and
+
+$$\boldsymbol{\Lambda}=\textbf{V}^T\textbf{A}\textbf{V}$$
+
+We can use this equation to calculate the eigenvalue based on the eignvector.
+
+### The Singular Value Decomposition (SVD)
+
+If we say that the transformation by the symmetry matrix is doing a "pure bending", then the transformation by the non-symmetry matrix is the "bending", "rotating", and "shearing". Then, the eigendecomposition may not show some important information to us. Then we have the SVD, which has the form of:
+
+$$\textbf{A}\textbf{v}=\sigma\textbf{u}$$
+
+Or in decomposition form,
+
+$$\textbf{A}=\textbf{U}\boldsymbol{\Sigma}\textbf{V}^T$$
+
+This not only indicates the magnitudes of the shrinkage and stretch, but also shows how they rotate/shear the coordinate system.
+
+We can also construct this matrix so that it becomes symmetric:
+
+$$\textbf{A}^T\textbf{A}=\textbf{V}\boldsymbol{\Sigma}^2\textbf{V}^T$$
+
+$$\textbf{A}\textbf{A}^T=\textbf{U}\boldsymbol{\Sigma}^2\textbf{U}^T$$
+
+Where the $\textbf{V}$ and $\textbf{U}$ are the corresponding eigenvector matrices, and the eigenvalue equals $\sigma^2$. Note that if $\textbf{A}$ is a full-ranked tall matrix, then $\textbf{A}^T\textbf{A}$ will be a square and full-ranked matrix, since the degree of "information" is kept for this dimension. However, $\textbf{A}\textbf{A}^T$ will not be a full-ranked matrix, since the original matrix only contains $\rho(\textbf{A})$ degree of "information", which is smaller than its dimension. This fact tells us that we will never generate any information that is not contained in the matrix you are multiplying.
+
+I put some visualization in the [linear algebra visualization file](/basic_knowledges/linear_algebra_visual_illustration.ipynb), you can take a look on it.
+
 ## Gram-Schmidt
 
 ### Fourier Expansion and Inner Product
