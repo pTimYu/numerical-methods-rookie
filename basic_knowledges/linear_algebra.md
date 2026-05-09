@@ -28,6 +28,7 @@ For a linear system $\textbf{Ax}=\textbf{b}$, $\textbf{x}$ is the input while $\
 Here, I will put some useful identities which will be helpful to mathematical proof.
 
 1. $\|x-y\|\ge|\|x\|-\|y\||$
+2. $\|x\|+\|y\|\ge\|x+y\|$
 
 ### Vector Norms
 Definition:
